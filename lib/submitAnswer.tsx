@@ -1,13 +1,11 @@
+import { selectedOption } from "@/components/questionCard";
 const Axios = require("axios");
-export default async function submitAnswer(selectedOption: {
-  answer: string;
-  id: number;
-}) {
+export default async function submitAnswer(selectedOption: selectedOption) {
   try {
     const response = await Axios.post(
-      `http://127.0.0.1:3000/answer/${selectedOption.id}`,
+      `https://web-dev-quiz-api.vercel.app/answer/${selectedOption?.id}`,
       {
-        answer: selectedOption.answer,
+        answer: selectedOption?.answer,
       },
       {
         headers: {
@@ -15,7 +13,6 @@ export default async function submitAnswer(selectedOption: {
         },
       }
     );
-    console.log("Answer submission result:", response.data.message);
     return response.data.correct;
   } catch (error) {
     console.log(error);

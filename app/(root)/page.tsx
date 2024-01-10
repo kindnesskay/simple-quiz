@@ -1,20 +1,14 @@
-import QuestionCard from "@/components/questionCard";
-import Axios from "axios";
-import { errors } from "undici-types";
+import Link from "next/link";
+
 export default async function Home() {
-  async function fetchQuestion(questionID: number) {
-    try {
-      const response = await Axios.get(
-        `http://127.0.0.1:3000/question/${questionID}`
-      );
-      
-
-      return response.data;
-    } catch (error) {
-      console.log(error);
-    }
-  }
-
-  const question = await fetchQuestion(3);
-  return <main>{question && <QuestionCard quiz={question} />}</main>;
+  return (
+    <div className="flex flex-col p-4 h-screen justify-center items-center bg-neutral-50 w-screen">
+      <div className="max-w-sm flex flex-col items-center">
+        <h1 className="text-center mb-2 font-semibold">Please click Start to continue</h1>
+        <Link href={'/quiz'} className="p-4 bg-sky-500 text-white font-bold rounded-xl w-24 text-center">
+          Start
+        </Link>
+      </div>
+    </div>
+  );
 }
