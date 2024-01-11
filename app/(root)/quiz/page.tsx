@@ -39,18 +39,19 @@ export default function page() {
     setQuestionNumber(questionNumber + 1);
   };
 
-  const handleEnd = () => {
-    return null;
+  const handleQuit = () => {
+    return setGameOver(true)
   };
+
   return (
     <>
       {gameOver && (
         <div className="w-full flex justify-center pt-8 px-4">
-          <GameOver score={score} handleAgain={handleAgain} handleEnd={handleEnd} />
+          <GameOver score={score} handleAgain={handleAgain}/>
         </div>
       )}
       {question && !gameOver && (
-        <QuizQuestion key={questionNumber} quiz={question} handleNext={handleNext} />
+        <QuizQuestion key={questionNumber} quiz={question} handleNext={handleNext} handleQuit={handleQuit} max={lastQuestion} percentage={questionNumber}/>
       )}
     </>
   );
