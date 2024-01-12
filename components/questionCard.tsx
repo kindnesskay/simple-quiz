@@ -21,7 +21,10 @@ export default function QuizQuestion({
   const question = quiz?.question;
   const options = quiz?.options;
   const [selectedOption, setSelectedOption] = useState<selectedOption>(null);
-  const currentPercentage=(100 * percentage)/max
+  const currentPercentage=((100 * percentage)/max)-max
+  
+  
+  
   const handleOptionChange = (option: string) => {
     setSelectedOption({ answer: option, id: quiz?.id });
   };
@@ -41,8 +44,8 @@ export default function QuizQuestion({
       </div>
       <div>
         <h3 className="font-bold p-2 mb-2 text-xl">{question}</h3>
-        <div className="w-full bg-slate-300 h-4 mb-2 rounded-md">
-          <div className="h-full bg-sky-500 rounded-md" style={{width:`${currentPercentage}`}}></div>
+        <div className="w-full bg-slate-300 h-4 mb-2 rounded-md overflow-hidden">
+          <div className="h-full bg-sky-500 rounded-md" style={{width:`${currentPercentage}%`}}></div>
         </div>
       </div>
       <div className="flex flex-col gap-4">
@@ -93,9 +96,9 @@ export default function QuizQuestion({
         ))}
       </div>
       <div className="flex px-4 w-full mt-2 font-bold gap-4  ">
-        <button onClick={handleQuit} className="h-16 p-2 rounded-lg w-1/2">Quit</button>
+        <button onClick={handleQuit} className="h-16 p-2 rounded-lg hover:bg-red-500 hover:text-white border border-solid w-1/2">Quit</button>
         <button
-          className="h-16 p-2 rounded-lg bg-sky-400 text-white w-1/2"
+          className="h-16 p-2 rounded-lg hover:bg-sky-600 bg-sky-400 text-white w-1/2"
           onClick={handleNextButton}
         >
           Next

@@ -14,12 +14,12 @@ export default function GameOver({
         <p className="font-bold text-lg ">{score}/10</p>
       </div>
       <div className="flex gap-4 px-2 py-2 w-full h-16">
-        <Link href={"/"} className="w-1/2 p-2 text-center h-12 rounded-md font-bold">
+        <Link href={"/"} className="w-1/2 p-2 hover:bg-red-500 hover:text-white border-2 border-solid flex items-center justify-center h-12 rounded-md font-bold">
           End
         </Link>
-        <button
+        <button 
           onClick={handleAgain}
-          className="w-1/2 p-2 h-12  rounded-md bg-sky-500 text-white font-bold"
+          className="w-1/2 p-2 h-12  rounded-md hover:bg-sky-600 bg-sky-500 text-white font-bold"
         >
           Again
         </button>

@@ -22,12 +22,10 @@ export default function page() {
   const handleAgain = () => {
     setQuestionNumber(1);
     setGameOver(false);
-    setScore(0)
+    setScore(0);
   };
   const handleNext = async (answer: selectedOption) => {
-    
-    if (questionNumber >= lastQuestion) {
-      setGameOver(true);
+    if (questionNumber > lastQuestion) {
       return;
     }
     try {
@@ -35,23 +33,34 @@ export default function page() {
       if (response == true) {
         setScore(score + 1);
       }
+      if (questionNumber >= lastQuestion) {
+        setGameOver(true);
+        return;
+      }
+      setQuestionNumber(questionNumber + 1);
     } catch (error) {}
-    setQuestionNumber(questionNumber + 1);
   };
 
   const handleQuit = () => {
-    return setGameOver(true)
+    return setGameOver(true);
   };
 
   return (
     <>
       {gameOver && (
         <div className="w-full flex justify-center pt-8 px-4">
-          <GameOver score={score} handleAgain={handleAgain}/>
+          <GameOver score={score} handleAgain={handleAgain} />
         </div>
       )}
       {question && !gameOver && (
-        <QuizQuestion key={questionNumber} quiz={question} handleNext={handleNext} handleQuit={handleQuit} max={lastQuestion} percentage={questionNumber}/>
+        <QuizQuestion
+          key={questionNumber}
+          quiz={question}
+          handleNext={handleNext}
+          handleQuit={handleQuit}
+          max={lastQuestion}
+          percentage={questionNumber}
+        />
       )}
     </>
   );
